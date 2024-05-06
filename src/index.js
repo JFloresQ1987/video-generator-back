@@ -1,7 +1,8 @@
 import express from "express";
 import path from "path";
 import { PORT } from "./config.js";
-import indexRoutes from "./routes/payment.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
+import supabaseRoutes from "./routes/supabase.routes.js";
 import cors from "cors";
 // import bodyParser from "body-parser";
 
@@ -14,7 +15,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
-app.use(indexRoutes);
+app.use(paymentRoutes);
+// app.use(supabaseRoutes);
+// app.use('/api/product', require('./routes/supabase.routes'));
+app.use('/api', supabaseRoutes);
 
 // Static files
 app.use(express.static(path.resolve("../public")));

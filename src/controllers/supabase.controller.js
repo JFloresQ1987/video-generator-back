@@ -1,6 +1,6 @@
 // import Stripe from "stripe";
 // import { STRIPE_PRIVATE_KEY } from "../config.js";
-import { supabase } from '../libs/supabase.js';
+import { supabase, supabaseAdmin } from '../libs/supabase.js';
 
 // const stripe = new Stripe(STRIPE_PRIVATE_KEY);
 
@@ -135,6 +135,8 @@ export const getOrderById = async (req, res) => {
 
   // const category_id = req.query.category_id;
   const id = req.params.id;    
+  // console.log(req)
+  // console.log(id)
   
   let { data, error } = await supabase
     .from('orders')
@@ -150,24 +152,41 @@ export const getOrderById = async (req, res) => {
   //     data,
   // });
 
+  // const test = {
+  // "model_id": "string",
+  // "model_composition": "string",
+  // // "messages": Messages,
+  // // "images": Images,
+  // "video_rendered_url": "string",
+  // }
+
+  // console.log(test)
+
   return res.json(data);
 };
 
 export const createOrder = async (req, res) => {
 
+  // console.log('Entro a guardar');
+
+  // const { usuario, comentario } = req.body;
+  
   // const category_id = req.query.category_id;
-  const order = req.query;
+  const order = req.body;
   // const id = req.params.id;
+  
   console.log(order);
   
-  const { data, error } = await supabase
+  //TODO: mejorar supabaseAdmin
+  const { data, error } = await supabaseAdmin
         .from('orders')
         .insert([
           // { some_column: 'someValue', other_column: 'otherValue' },
           // this.myForm.value,
           order
         ])
-        .select()   
+        .select()
+        .single()
 
   if (data) console.log(data)
   if (error) console.log(error)

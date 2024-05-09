@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Routes
-app.use(paymentRoutes);
+app.use('/api', paymentRoutes);
 // app.use(supabaseRoutes);
 // app.use('/api/product', require('./routes/supabase.routes'));
 app.use('/api', supabaseRoutes);

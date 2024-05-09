@@ -4,11 +4,10 @@ import { STRIPE_PRIVATE_KEY } from "../config.js";
 const stripe = new Stripe(STRIPE_PRIVATE_KEY);
 
 export const createSession = async (req, res) => {
-  try {
-
+  try {    
+    
     const item_id = req.body.items[0].id;
-    // console.log(req.body.items);
-    // console.log(item_id);
+    
     const items = req.body.items.map((item) => {
       return {
         price_data: {
@@ -30,7 +29,7 @@ export const createSession = async (req, res) => {
       },
       mode: 'payment',
       // success_url: `${YOUR_DOMAIN}/success.html`,
-      success_url: `http://localhost:4200/sales/${items[0].id}`,
+      success_url: `http://localhost:4200/sales/${item_id}`,
       // cancel_url: `${YOUR_DOMAIN}/cancel.html`,
       cancel_url: `http://localhost:4200/cancel`,
     });

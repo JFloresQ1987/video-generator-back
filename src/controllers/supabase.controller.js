@@ -175,7 +175,7 @@ export const createOrder = async (req, res) => {
   const order = req.body;
   // const id = req.params.id;
   
-  console.log(order);
+  // console.log(order);
   
   //TODO: mejorar supabaseAdmin
   const { data, error } = await supabaseAdmin
@@ -194,6 +194,52 @@ export const createOrder = async (req, res) => {
   return res.json({
       ok: true,
       data,
+  });
+
+  // return res.json(data);
+};
+
+export const updateOrder = async (req, res) => {
+
+  // console.log('Entro a guardar');
+
+  // const { usuario, comentario } = req.body;
+  
+  // const category_id = req.query.category_id;
+  // const id = req.params.id;
+  const order = req.body;
+  // const id = req.params.id;
+  const id = order.id;
+  
+  // console.log(id);
+  // console.log(order);
+  
+  //TODO: mejorar supabaseAdmin
+  // const { data, error } = await supabaseAdmin
+  //       .from('orders')
+  //       .insert([
+  //         // { some_column: 'someValue', other_column: 'otherValue' },
+  //         // this.myForm.value,
+  //         order
+  //       ])
+  //       .select()
+  //       .single()
+//TODO: completar las propiedades a actualizar
+  const { error } = await supabaseAdmin
+    .from('orders')
+    .update({
+      order_state: 'edited',
+      // images: _images,
+      // video_rendered_url: _url,
+    })
+    .eq('id', id)
+
+  // if (data) console.log(data)
+  if (error) console.log(error)
+
+  return res.json({
+      ok: true,
+      // data,
   });
 
   // return res.json(data);

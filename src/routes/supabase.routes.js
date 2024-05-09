@@ -5,7 +5,8 @@ import {
     getModelsByProductId,
     getModelById,
     getOrderById,
-    createOrder
+    createOrder,
+    updateOrder
 } from "../controllers/supabase.controller.js";
 
 const router = Router();
@@ -25,6 +26,7 @@ router.get('/order-by-id/:id', getOrderById);
 // router.get('qwe/:category_id', [], getProductsByCategoryId);
 
 router.post("/orders", createOrder);
+router.put("/orders", updateOrder);
 
 // router.post("/create-checkout-session", createSession);
 

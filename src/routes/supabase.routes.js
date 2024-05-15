@@ -1,4 +1,5 @@
 import { Router } from "express";
+import expressFileupload from "express-fileupload";
 import {
     getCategoriesAll,
     getProductsByCategoryId,
@@ -6,10 +7,12 @@ import {
     getModelById,
     getOrderById,
     createOrder,
-    updateOrder
+    updateOrder,
+    fileUpload
 } from "../controllers/supabase.controller.js";
 
 const router = Router();
+router.use(expressFileupload());
 
 // router.post("/create-checkout-session", createSession);
 
@@ -27,6 +30,9 @@ router.get('/order-by-id/:id', getOrderById);
 
 router.post("/orders", createOrder);
 router.put("/orders", updateOrder);
+
+// router.put('/:id', validarJWT, fileUpload);
+router.post('/orders/images', fileUpload);
 
 // router.post("/create-checkout-session", createSession);
 

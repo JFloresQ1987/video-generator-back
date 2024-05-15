@@ -245,6 +245,87 @@ export const updateOrder = async (req, res) => {
   // return res.json(data);
 };
 
+export const fileUpload = async (req, res) => {
+
+  // console.log('llego a back')
+  
+  const id = req.params.id;
+
+  if (!req.files || Object.keys(req.files).length === 0)
+      return res.status(400).json({
+          ok: false,
+          msg: 'No hay ningún documento seleccionado.'
+      });
+
+      const imageFile = req.files.file;
+      // const file = req.files.imagen;
+  const nombreCortado = imageFile.name.split('.');
+  
+  const extension = nombreCortado[nombreCortado.length - 1];
+  const expensiones_validas = ['png', 'jpg', 'jpeg', 'gif'];
+
+  if (!expensiones_validas.includes(extension))
+      return res.status(400).json({
+          ok: false,
+          msg: 'Extensión de documento no permitido.'
+      });
+
+  // const nombre_documento = `${uuidv4()}.${extension}`;
+  // const path = `./documents/${nombre_documento}`;
+
+  // file.mv(path, (err) => {
+
+  //     if (err)
+  //         return res.status(500).json({
+  //             ok: false,
+  //             msg: 'Error al subir el documento.'
+  //         });
+
+  //     res.json({
+  //         ok: true,
+  //         msg: 'Documento subido satisfactoriamente.',
+  //         nombre_documento
+  //     });
+  // })
+
+  const image = imageFile.data;
+  const type = imageFile.mimetype;
+
+  // const imageFile = file
+        const imageName = `${(new Date()).getTime()}`
+        const { data, error } = await supabase
+            .storage
+            .from('images')
+            // .upload(`${imageName}.png`, imageFile, {
+              .upload(`${imageName}.${extension}`, image, {
+                contentType: type,
+                cacheControl: '3600',
+                upsert: false
+            })
+
+
+
+    //         const { error } = await supabaseAdmin.storage
+    // .from(bucketName)
+    // .upload(filePath, fileData, options);
+
+        if (data) console.log(data)
+        if (error) console.log(error)
+
+        // return data?.path;
+
+        return res.json({
+          ok: true,
+          // data: data.path,
+          data: data,
+      });
+
+}
+
+
+
+
+
 // export const createSession = async (req, res) => {
 //   try {
 

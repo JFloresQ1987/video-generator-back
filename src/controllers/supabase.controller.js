@@ -8,7 +8,7 @@ export const getCategoriesAll = async (req, res) => {
 
     // const category_id = req.query.category_id;
 
-    let { data, error } = await supabase
+    const { data, error } = await supabase
       .from('categories')
       .select('*')
     //   .eq('category_id', category_id)      
@@ -30,7 +30,7 @@ export const getProductsByCategoryId = async (req, res) => {
     // const category_id = req.query.category_id;
     const category_id = req.params.category_id;    
 
-    let { data, error } = await supabase
+    const { data, error } = await supabase
       .from('products')
       .select('*')
       .eq('category_id', category_id)      
@@ -91,7 +91,7 @@ export const getModelsByProductId = async (req, res) => {
 
 
 
-    let { data, error } = await supabase
+    const { data, error } = await supabase
       .from('models')
       .select('*')
       .eq('product_id', product_id)      
@@ -114,7 +114,7 @@ export const getModelById = async (req, res) => {
   // const category_id = req.query.category_id;
   const id = req.params.id;    
   
-  let { data, error } = await supabase
+  const { data, error } = await supabase
     .from('models')
     .select('*')
     .eq('id', id)
@@ -138,7 +138,7 @@ export const getOrderById = async (req, res) => {
   // console.log(req)
   // console.log(id)
   
-  let { data, error } = await supabase
+  const { data, error } = await supabase
     .from('orders')
     .select('*')
     .eq('id', id)

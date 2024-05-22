@@ -3,11 +3,15 @@ import path from "path";
 import { PORT } from "./config.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import supabaseRoutes from "./routes/supabase.routes.js";
+import resendRoutes from "./routes/resend.routes.js";
 import cors from "cors";
+// import { Resend } from "resend";
 // import bodyParser from "body-parser";
 
 // Initializations
 const app = express();
+// const resend = new Resend("re_123456789");
+
 app.use(cors())
 
 // Middlewares
@@ -19,6 +23,8 @@ app.use('/api', paymentRoutes);
 // app.use(supabaseRoutes);
 // app.use('/api/product', require('./routes/supabase.routes'));
 app.use('/api', supabaseRoutes);
+
+app.use('/api', resendRoutes);
 
 // Static files
 app.use(express.static(path.resolve("../public")));

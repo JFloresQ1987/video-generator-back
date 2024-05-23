@@ -1,6 +1,7 @@
 // import Stripe from "stripe";
 // import { STRIPE_PRIVATE_KEY } from "../config.js";
 import { supabase, supabaseAdmin } from '../libs/supabase.js';
+import moment from 'moment';
 
 // const stripe = new Stripe(STRIPE_PRIVATE_KEY);
 
@@ -172,8 +173,16 @@ export const createOrder = async (req, res) => {
   // const { usuario, comentario } = req.body;
   
   // const category_id = req.query.category_id;
-  const order = req.body;
+  // const order = req.body;
   // const id = req.params.id;
+
+  const fecha_hoy = moment();
+  const payment_access_until = fecha_hoy.add(7, 'days');
+    // const minutes = fecha_max.diff(fecha_hoy, 'minutes');
+
+  // console.log('Vence en',payment_access_until)
+
+  const order = {...req.body, payment_access_until};
   
   // console.log(order);
   

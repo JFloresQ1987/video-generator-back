@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { PORT } from "./config.js";
+import webhookRoutes from "./routes/webhook.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import supabaseRoutes from "./routes/supabase.routes.js";
 import resendRoutes from "./routes/resend.routes.js";
@@ -16,6 +17,9 @@ app.use(cors())
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));
+
+app.use('/api', webhookRoutes);
+
 app.use(express.json());
 
 // Routes

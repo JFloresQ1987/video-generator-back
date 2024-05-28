@@ -1,12 +1,12 @@
 name: Publish
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-# on:
-#   push:
-#     branches: ["master"]
-#   pull_request:
-#     branches: ["master"]
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+    branches: ["master"]
 
-on: [push]
+# on: [push]
 
 jobs:
   create-docker-image:

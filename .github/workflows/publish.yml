@@ -35,12 +35,14 @@ jobs:
     needs: create-docker-image
     runs-on: ubuntu-latest
     env:
+      PORT: 4242
       STRIPE_PRIVATE_KEY: ${{ secrets.STRIPE_PRIVATE_KEY }}
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
       SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
       RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
       WEBHOOK_END_POINT_SECRET: ${{ secrets.WEBHOOK_END_POINT_SECRET }}
+      WEB_URL: http://localhost:4200/sales
     steps:
       - name: Install sshpass
         run: sudo apt-get install sshpass

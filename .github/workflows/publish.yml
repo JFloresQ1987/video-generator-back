@@ -35,8 +35,8 @@ jobs:
         run: sudo apt-get install -y sshpass
 
       - name: SSH into Server
-        run: |
-          sshpass -p ${{ secrets.AUTH_PASS }} ssh -o StrictHostChecking=no ${{ secrets.AUTH_SERVER }} << EOF
+        run: |          
+          sshpass -p ${{ secrets.AUTH_PASS }} ssh ${{ secrets.AUTH_SERVER }} << EOF
             cd /var/www/video-generator-back/
             docker login ghcr.io -u jfloresq1987 -p ${{ secrets.TOKEN_TEST_CD }}
             docker pull ghcr.io/jfloresq1987/video-generator-back:latest

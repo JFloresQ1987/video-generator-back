@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install sshpass
-        run: sudo apt-get install -y sshpass
+        run: sudo apt-get install sshpass
 
       - name: SSH into Server
         run: |

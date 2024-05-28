@@ -56,8 +56,6 @@ const stripe = new Stripe(STRIPE_PRIVATE_KEY);
 // app.post('/webhook', express.raw({type: 'application/json'}), (request, response) => {
 export const webhook = async (req, res) => {
 
-    // console.log('entrooooo a webhook')
-
     try {
         const sig = req.headers['stripe-signature'];
 

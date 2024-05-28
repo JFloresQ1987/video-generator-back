@@ -1,5 +1,6 @@
 import { resend } from '../libs/resend.js';
-import { html_template } from '../libs/html-template.js';
+// import { html_template } from '../libs/html-template.js';
+import { getHtmlTemplate } from '../libs/html-template.js';
 
 // app.get("/", async (req, res) => {
 export const sentEmail = async (req, res) => {
@@ -28,7 +29,8 @@ export const sentEmail = async (req, res) => {
                 filename: 'invitación.mp4',
             },
         ],
-        html: html_template,
+        // html: html_template,
+        html: getHtmlTemplate(id),
         text: 'Gracias por su compra',
     });
 

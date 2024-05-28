@@ -169,6 +169,7 @@ export const getOrderById = async (req, res) => {
 export const createOrder = async (req, res) => {
 
   // console.log('Entro a guardar');
+  // console.log(req.body)
 
   // const { usuario, comentario } = req.body;
   
@@ -177,13 +178,15 @@ export const createOrder = async (req, res) => {
   // const id = req.params.id;
 
   const fecha_hoy = moment();
-  const payment_access_until = fecha_hoy.add(7, 'days');
+  const payment_access_until = fecha_hoy.add(8, 'days');
     // const minutes = fecha_max.diff(fecha_hoy, 'minutes');
 
   // console.log('Vence en',payment_access_until)
 
   const order = {...req.body, payment_access_until};
   
+  // console.log('createeee')
+  // // console.log(req.body)
   // console.log(order);
   
   //TODO: mejorar supabaseAdmin
@@ -216,12 +219,14 @@ export const updateOrder = async (req, res) => {
   
   // const category_id = req.query.category_id;
   // const id = req.params.id;
-  const order = req.body;
-  // const id = req.params.id;
-  const id = order.id;
   
-  // console.log(id);
-  // console.log(order);
+  const order = req.body;
+  const id = order.id;
+  // const id = req.params.id;  
+  
+  console.log('entroo a editar');
+  console.log(id);
+  console.log(order);
   
   //TODO: mejorar supabaseAdmin
   // const { data, error } = await supabaseAdmin
@@ -240,6 +245,8 @@ export const updateOrder = async (req, res) => {
       order_state: 'edited',
       // images: _images,
       // video_rendered_url: _url,
+      messages: order.messages,
+      images: order.images,
     })
     .eq('id', id)
 
@@ -273,7 +280,7 @@ export const fileUpload = async (req, res) => {
   const extension = nombreCortado[nombreCortado.length - 1];
   const expensiones_validas = ['png', 'jpg', 'jpeg', 'gif'];
 
-  if (!expensiones_validas.includes(extension))
+  if (!expensiones_validas.includes(extension.toLowerCase()))
       return res.status(400).json({
           ok: false,
           msg: 'Extensión de documento no permitido.'

@@ -6,7 +6,11 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 #   pull_request:
 #     branches: ["master"]
 
-on: [push]
+# on: [push]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   # create-docker-image:
@@ -30,6 +34,13 @@ jobs:
   deploy:
     # needs: create-docker-image
     runs-on: ubuntu-latest
+    env:
+      STRIPE_PRIVATE_KEY: ${{ secrets.STRIPE_PRIVATE_KEY }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+      RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+      WEBHOOK_END_POINT_SECRET: ${{ secrets.WEBHOOK_END_POINT_SECRET }}
     steps:
       - name: Install sshpass
         run: sudo apt-get install sshpass
@@ -43,10 +54,9 @@ jobs:
             docker stop video-generator-back && docker rm video-generator-back
             docker run -d \
               --name video-generator-back \
-              -p 4242:4242 \
-              -v $(pwd)/bot_sessions:/app/bot_sessions \
+              -p 4242:4242 \              
+              -v ./app:/app
               -w /app \
-              --restart always \
-              --env-file .env \
+              --restart always \              
               ghcr.io/jfloresq1987/video-generator-back:latest
           EOF

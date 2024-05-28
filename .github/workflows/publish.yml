@@ -36,4 +36,4 @@ jobs:
 
       - name: SSH into Server
         run: |          
-          sshpass -p 'n988Wm_z7K84#E' ssh root@161.132.40.160
+          sshpass -p 'n988Wm_z7K84#E' ssh root@161.132.40.160 -t

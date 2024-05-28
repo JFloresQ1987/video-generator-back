@@ -56,9 +56,9 @@ jobs:
             docker stop video-generator-back && docker rm video-generator-back
             docker run -d \
               --name video-generator-back \
-              -p 4242:4242 \              
-              -v ./app:/app
+              -p 4242:4242 \
+              -v ./app:/app \
               -w /app \
-              --restart always \              
+              --restart always \
               ghcr.io/jfloresq1987/video-generator-back:latest
           EOF

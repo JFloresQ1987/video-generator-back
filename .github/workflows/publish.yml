@@ -13,26 +13,26 @@ on:
 #       - main
 
 jobs:
-  # create-docker-image:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout the code
-  #       uses: actions/checkout@v2
+  create-docker-image:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v2
 
-  #     - name: Login to GitHub Container Registry
-  #       uses: docker/login-action@v1
-  #       with:
-  #         registry: ghcr.io
-  #         username: ${{ github.actor }}
-  #         password: ${{ secrets.TOKEN_TEST_CD }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.TOKEN_TEST_CD }}
       
-  #     - name: Build image
-  #       run: |
-  #         docker build . --tag ghcr.io/jfloresq1987/video-generator-back:latest
-  #         docker push ghcr.io/jfloresq1987/video-generator-back:latest
+      - name: Build image
+        run: |
+          docker build . --tag ghcr.io/jfloresq1987/video-generator-back:latest
+          docker push ghcr.io/jfloresq1987/video-generator-back:latest
 
   deploy:
-    # needs: create-docker-image
+    needs: create-docker-image
     runs-on: ubuntu-latest
     env:
       STRIPE_PRIVATE_KEY: ${{ secrets.STRIPE_PRIVATE_KEY }}

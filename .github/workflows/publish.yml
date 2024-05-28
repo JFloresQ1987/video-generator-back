@@ -9,31 +9,30 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: [push]
 
 jobs:
-  create-docker-image:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout the code
-        uses: actions/checkout@v2
+  # create-docker-image:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout the code
+  #       uses: actions/checkout@v2
 
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.TOKEN_TEST_CD }}
+  #     - name: Login to GitHub Container Registry
+  #       uses: docker/login-action@v1
+  #       with:
+  #         registry: ghcr.io
+  #         username: ${{ github.actor }}
+  #         password: ${{ secrets.TOKEN_TEST_CD }}
       
-      - name: Build image
-        run: |
-          docker build . --tag ghcr.io/jfloresq1987/video-generator-back:latest
-          docker push ghcr.io/jfloresq1987/video-generator-back:latest
+  #     - name: Build image
+  #       run: |
+  #         docker build . --tag ghcr.io/jfloresq1987/video-generator-back:latest
+  #         docker push ghcr.io/jfloresq1987/video-generator-back:latest
 
   deploy:
-    needs: create-docker-image
+    # needs: create-docker-image
     runs-on: ubuntu-latest
     steps:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
       - name: SSH into Server
-        run: |          
-          sshpass -p 'n988Wm_z7K84#E' ssh root@161.132.40.160 -t
+        run: sshpass -p 'n988Wm_z7K84#E' ssh root@161.132.40.160

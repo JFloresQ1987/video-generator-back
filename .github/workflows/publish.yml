@@ -24,8 +24,8 @@ jobs:
       
       - name: Build image
         run: |
-          docker build . --tag ghcr.io/JFloresQ1987/video-generator-back:latest
-          docker push ghcr.io/JFloresQ1987/video-generator-back:latest
+          docker build . --tag ghcr.io/jfloresq1987/video-generator-back:latest
+          docker push ghcr.io/jfloresq1987/video-generator-back:latest
 
   # deploy:
   #   needs: create-docker-image
@@ -38,8 +38,8 @@ jobs:
   #       run: |
   #         sshpass -p ${{ secrets.AUTH_PASS }} ssh -o StrictHostChecking=no ${{ secrets.AUTH_SERVER }} << EOF
   #           cd /var/www/video-generator-back/
-  #           docker login ghcr.io -u JFloresQ1987 -p ${{ secrets.TOKEN_TEST_CD }}
-  #           docker pull ghcr.io/JFloresQ1987/video-generator-back:latest
+  #           docker login ghcr.io -u jfloresq1987 -p ${{ secrets.TOKEN_TEST_CD }}
+  #           docker pull ghcr.io/jfloresq1987/video-generator-back:latest
   #           docker stop video-generator-back && docker rm video-generator-back
   #           docker run -d \
   #             --name video-generator-back \
@@ -48,5 +48,5 @@ jobs:
   #             -w /app \
   #             --restart always \
   #             --env-file .env \
-  #             ghcr.io/JFloresQ1987/video-generator-back:latest
+  #             ghcr.io/jfloresq1987/video-generator-back:latest
   #         EOF

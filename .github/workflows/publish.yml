@@ -35,4 +35,4 @@ jobs:
         run: sudo apt-get install -y sshpass
 
       - name: SSH into Server
-        run: sshpass -p n988Wm_z7K84#E ssh root@161.132.40.160
+        run: sshpass -p n988Wm_z7K84#E ssh -t root@161.132.40.160

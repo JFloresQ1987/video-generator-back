@@ -55,5 +55,6 @@ jobs:
             docker pull ghcr.io/jfloresq1987/video-generator-back:latest
             docker stop video-generator-back && docker rm video-generator-back
             docker run -d \
-            --name video-generator-back -p 3000:3000 ghcr.io/jfloresq1987/video-generator-back:latest
+            --name video-generator-back \
+            -p 3000:3000 ghcr.io/jfloresq1987/video-generator-back:latest
           EOF

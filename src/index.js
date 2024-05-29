@@ -30,6 +30,10 @@ app.use(express.json());
 
 // app.use('/api', resendRoutes);
 
+app.get('/api', function(req, res) {
+  res.json({ mensaje: '¡Hola Mundo!' })   
+})
+
 // Static files
 app.use(express.static(path.resolve("../public")));
 

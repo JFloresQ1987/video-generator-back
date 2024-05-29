@@ -55,6 +55,7 @@ jobs:
             docker pull ghcr.io/jfloresq1987/video-generator-back:latest
             docker stop video-generator-back && docker rm video-generator-back
             docker run -d \
+            -e PORT=$PORT \
             --name video-generator-back \
             -p 4242:4242 \
             ghcr.io/jfloresq1987/video-generator-back:latest

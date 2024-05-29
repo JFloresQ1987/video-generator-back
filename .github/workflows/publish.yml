@@ -54,7 +54,7 @@ jobs:
             docker login ghcr.io -u jfloresq1987 -p ${{ secrets.TOKEN_TEST_CD }}
             docker pull ghcr.io/jfloresq1987/video-generator-back:latest
             docker stop video-generator-back && docker rm video-generator-back
-            docker run -d \
+            docker run \
               --name video-generator-back \
               -p 4242:4242 \
               -v ./app:/app \

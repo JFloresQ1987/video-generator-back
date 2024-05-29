@@ -35,7 +35,7 @@ jobs:
     needs: create-docker-image
     runs-on: ubuntu-latest
     env:
-      PORT: 4242
+      PORT: 3000
       STRIPE_PRIVATE_KEY: ${{ secrets.STRIPE_PRIVATE_KEY }}
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}

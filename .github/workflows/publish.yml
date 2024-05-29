@@ -56,7 +56,7 @@ jobs:
             docker stop video-generator-back && docker rm video-generator-back
             docker run -d \
               --name video-generator-back \
-              -p 4242:4242 \
+              -p 3000:3000 \
               -v ./app:/app \
               -w /app \
               --restart always \

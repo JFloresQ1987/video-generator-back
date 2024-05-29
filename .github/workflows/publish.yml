@@ -35,7 +35,7 @@ jobs:
     needs: create-docker-image
     runs-on: ubuntu-latest
     env:
-      PORT: 3000
+      PORT: 4242
       STRIPE_PRIVATE_KEY: ${{ secrets.STRIPE_PRIVATE_KEY }}
       SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
       SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
@@ -56,6 +56,6 @@ jobs:
             docker stop video-generator-back && docker rm video-generator-back
             docker run -d \
             --name video-generator-back \
-            -p 3000:3000 \
+            -p 4242:4242 \
             ghcr.io/jfloresq1987/video-generator-back:latest
           EOF

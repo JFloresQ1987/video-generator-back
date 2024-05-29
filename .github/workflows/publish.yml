@@ -60,5 +60,3 @@ jobs:
             -p 4242:4242 \
             ghcr.io/jfloresq1987/video-generator-back:latest
           EOF
-        env:
-          PORT: 4242

@@ -55,7 +55,15 @@ jobs:
             docker pull ghcr.io/jfloresq1987/video-generator-back:latest
             docker stop video-generator-back && docker rm video-generator-back
             docker run -d \
-            -e PORT=$PORT \
+            -e \
+            PORT=$PORT \
+            STRIPE_PRIVATE_KEY=$STRIPE_PRIVATE_KEY \
+            SUPABASE_URL=$SUPABASE_URL \
+            SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY \
+            SUPABASE_SERVICE_ROLE_KEY=$SUPABASE_SERVICE_ROLE_KEY \
+            RESEND_API_KEY=$RESEND_API_KEY \
+            WEBHOOK_END_POINT_SECRET=$WEBHOOK_END_POINT_SECRET \
+            WEB_URL=$WEB_URL \
             --name video-generator-back \
             -p 4242:4242 \
             ghcr.io/jfloresq1987/video-generator-back:latest

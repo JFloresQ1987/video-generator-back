@@ -1,6 +1,9 @@
 import Stripe from "stripe";
 import { STRIPE_PRIVATE_KEY, WEBHOOK_END_POINT_SECRET } from "../config.js";
 import { supabase, supabaseAdmin } from '../libs/supabase.js';
+import { config } from "dotenv";
+
+config();
 
 const stripe = new Stripe(STRIPE_PRIVATE_KEY);
 
@@ -31,9 +34,11 @@ export const createSession = async (req, res) => {
       },
       mode: 'payment',
       // success_url: `${YOUR_DOMAIN}/success.html`,
-      success_url: `http://localhost:4200/sales/${item_id}`,
+      // success_url: `http://localhost:4200/sales/${item_id}`,
+      success_url: `${process.env.WEB_URL}/sales/${item_id}`,
       // cancel_url: `${YOUR_DOMAIN}/cancel.html`,
-      cancel_url: `http://localhost:4200/cancel`,
+      // cancel_url: `http://localhost:4200/cancel`,
+      cancel_url: `${process.env.WEB_URL}/cancel`,
     });
     return res.json({ url: session.url });
   } catch (error) {
